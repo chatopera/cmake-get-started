@@ -1,0 +1,28 @@
+SET(LIBHELLO_SRC hello.c)
+# 动态库
+ADD_LIBRARY(hello SHARED ${LIBHELLO_SRC})
+## 为动态库添加版本号, VERSION指代动态库版本，SOVERSION指代API版本
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+SET_TARGET_PROPERTIES(hello PROPERTIES VERSION 1.2 SOVERSION 1)
+
+# 静态库
+## Target 不能重名，所以静态库使用一个新名称
+ADD_LIBRARY(hello_static STATIC ${LIBHELLO_SRC})
+## 设定静态库在输出lib时，仍然命名为hello
+SET_TARGET_PROPERTIES(hello_static PROPERTIES OUTPUT_NAME "hello")
+
+GET_TARGET_PROPERTY(STATIC_LIB_VALUE hello_static OUTPUT_NAME)
+MESSAGE(STATUS "This is the hello_static OUTPUT_NAME:" ${STATIC_LIB_VALUE})
+
+# 为了同时生成静态库和动态库，设置属性，不要求清除同名的文件
+## 避免在构建libhello.a时，清理掉libhello.so
+SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+
+# 安装
+## 注意：静态库要使用ARCHIVE关键字
+INSTALL(TARGETS hello hello_static 
+    LIBRARY DESTINATION 
+    lib ARCHIVE DESTINATION lib)
+
+INSTALL(FILES hello.h DESTINATION include/hello)
