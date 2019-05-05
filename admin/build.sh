@@ -17,3 +17,5 @@ docker build \
     --build-arg VCS_REF=`git rev-parse --short HEAD` \
     --build-arg CMAKE_VERSION=${imageversion} \
     --force-rm=true --tag $imagename:$imageversion .
+
+docker push chatopera/cmake:3.13.3
