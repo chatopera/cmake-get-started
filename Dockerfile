@@ -1,8 +1,14 @@
 # Container for building and testing cmake-get-started with CMake
+# original Dockerfile borrow from https://github.com/ttroy50/cmake-examples
 FROM ubuntu:16.04
 MAINTAINER Hai Liang Wang <hain@chatopera.com>
 
 ARG CMAKE_VERSION
+
+ARG VCS_REF
+
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+          org.label-schema.vcs-url="https://github.com/chatopera/cmake-get-started"
 
 RUN apt-get update && apt-get install -y build-essential \
     sudo \

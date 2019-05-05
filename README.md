@@ -1,11 +1,13 @@
 # cmake-get-started
 
-快速开始使用 CMake，app 下有不同 Sample。
+快速开始使用 [CMake](https://cmake.org/)，`app` 下有不同示例。
 
-## 执行全部示例
+## 一键执行
+
+下面的脚本可以一键执行所有示例程序，因为它依赖于 [Docker](https://www.docker.com/)，请事先安装。
 
 ```
-./admin/all.sh
+./admin/run.sh
 ```
 
 ## 基础知识
@@ -42,6 +44,23 @@
 
 - 自定义 `FindHELLO.cmake`，将`t3`代码封装为模块
 
+## 执行全部示例
+
+```
+./admin/all.sh
+```
+
 ## 鸣谢
 
 本示例程序是基于[CMake Practice](http://file.ncnynl.com/ros/CMake%20Practice.pdf)的内容完成的。
+
+## 开源许可协议
+
+Copyright (2018) <a href="https://www.chatopera.com/" target="_blank">北京华夏春松科技有限公司</a>
+
+[Apache License Version 2.0](https://github.com/chatopera/cmake-get-started/blob/master/LICENSE)
+
+[![chatoper banner][co-banner-image]][co-url]
+
+[co-banner-image]: https://user-images.githubusercontent.com/3538629/42383104-da925942-8168-11e8-8195-868d5fcec170.png
+[co-url]: https://www.chatopera.com

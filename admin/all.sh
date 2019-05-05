@@ -13,7 +13,11 @@ cd $baseDir/..
 
 # rm files
 for x in `find . -name "build"`; do rm -rf $x; done
-rm -rf tmp && mkdir tmp
+if [ ! -d tmp ]; then
+    mkdir tmp
+fi
+
+rm -rf tmp/{bin,include,lib,share}
 
 cd $baseDir/../app
 for x in `ls`; do
