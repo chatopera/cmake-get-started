@@ -30,3 +30,5 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 hello
+build/
+build-*
