@@ -5,3 +5,5 @@
 ## 基础知识
 
 [C++静态库与动态库](https://www.cnblogs.com/skynet/p/3372855.html)
+
+[CMake Practice](./docs/CMakePractice.pdf)
