@@ -5,18 +5,15 @@
 
 # constants
 baseDir=$(cd `dirname "$0"`;pwd)
-INSTALL_DIR=$baseDir/../../tmp
 # functions
 
 # main 
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
-cd $baseDir/
-if [ -d build ]; then
-    rm -rf build
-fi
-mkdir build && cd build
-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR .. 
-make
-./bin/hello-t2
-
-make install
+cd $baseDir/../app
+for x in `ls`; do
+    echo "----------------"
+    echo "- Processing" $x
+    cd $baseDir/../app/$x
+    ./run.sh
+    sleep 3
+done
