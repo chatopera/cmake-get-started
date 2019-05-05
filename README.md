@@ -1,3 +1,5 @@
+[![Docker Layers](https://images.microbadger.com/badges/image/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own image badge on microbadger.com") [![Docker Version](https://images.microbadger.com/badges/version/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own version badge on microbadger.com") [![Docker Pulls](https://img.shields.io/docker/pulls/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Stars](https://img.shields.io/docker/stars/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Commit](https://images.microbadger.com/badges/commit/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own commit badge on microbadger.com")
+
 # cmake-get-started
 
 快速开始使用 [CMake](https://cmake.org/)，`app` 下有不同示例。
