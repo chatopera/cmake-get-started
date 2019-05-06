@@ -24,11 +24,33 @@ make VERBOSE=1
 make install
 set -x
 
-# Mac 设置动态库路径
-DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$INSTALL_DIR/lib
+# 设置动态库路径
+case "$(uname -s)" in
+   Darwin)
+     echo 'Mac OS X'
+     # Mac 设置动态库路径
+     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$INSTALL_DIR/lib
+     ;;
 
-# Linux 设置动态库路径
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INSTALL_DIR/lib
+   Linux)
+     echo 'Linux'
+     # Linux 设置动态库路径
+     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INSTALL_DIR/lib
+     ;;
+
+   CYGWIN*|MINGW32*|MSYS*)
+     echo 'MS Windows'
+     echo 'Not supported.'
+     exit 1
+     ;;
+
+   *)
+     echo 'other OS' 
+     echo 'Not supported.'
+     exit 1
+     ;;
+esac
+
 
 cd $INSTALL_DIR
 bin/hello-t6

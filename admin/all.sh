@@ -5,6 +5,7 @@
 
 # constants
 baseDir=$(cd `dirname "$0"`;pwd)
+osPlatform=linux
 # functions
 
 # main 
@@ -19,11 +20,11 @@ fi
 
 rm -rf tmp/{bin,include,lib,share}
 
-cd $baseDir/../app
+cd $baseDir/../$osPlatform
 for x in `ls`; do
     echo "----------------"
     echo "- Processing" $x
-    cd $baseDir/../app/$x
+    cd $baseDir/../$osPlatform/$x
     ./run.sh
     echo "- done. "
     echo "----------------"

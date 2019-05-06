@@ -6,7 +6,7 @@
 # constants
 baseDir=$(cd `dirname "$0"`;pwd)
 imagename=chatopera/cmake
-imageversion=3.13.3
+imageversion=3.14.3
 # functions
 
 # main 
@@ -18,4 +18,5 @@ docker build \
     --build-arg CMAKE_VERSION=${imageversion} \
     --force-rm=true --tag $imagename:$imageversion .
 
-docker push chatopera/cmake:3.13.3
+set -x
+docker push chatopera/cmake:3.14.3

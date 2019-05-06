@@ -32,10 +32,31 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INSTALL_DIR/lib
 # 安装
 make install
 
-# 执行
+# 查看一个可执行程序依赖的共享库
 cd $INSTALL_DIR/
-## 查看一个可执行程序依赖的共享库
-## Mac 中使用otool
-otool -L bin/hello-t4
-# ldd bin/hello-t4 # linux 使用ldd
+case "$(uname -s)" in
+   Darwin)
+     echo 'Mac OS X'
+     otool -L bin/hello-t4 # Mac 中使用otool
+     ;;
+
+   Linux)
+     echo 'Linux'
+     ldd bin/hello-t4 # linux 使用ldd
+     ;;
+
+   CYGWIN*|MINGW32*|MSYS*)
+     echo 'MS Windows'
+     echo 'Not supported.'
+     exit 1
+     ;;
+
+   *)
+     echo 'other OS' 
+     echo 'Not supported.'
+     exit 1
+     ;;
+esac
+
+# 执行
 bin/hello-t4

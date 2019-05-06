@@ -21,7 +21,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR ..
 make
 set -x
 ## 查看一个库中到底有哪些函数
-nm lib/libhello.dylib
+nm lib/libhello.so
 
 ## 安装
 make install

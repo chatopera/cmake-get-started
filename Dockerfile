@@ -11,24 +11,33 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
           org.label-schema.vcs-url="https://github.com/chatopera/cmake-get-started"
 
 RUN apt-get update && apt-get install -y build-essential \
-    sudo \
-    cmake \
+    libcurl4-openssl-dev \
     libboost-all-dev \
     libprotobuf-dev \
+    libevent-dev \
+    libssl-dev \
+    libtool \
+    flex \
+    bison \
+    pkg-config \
     protobuf-compiler \
     clang-3.6 \
     clang-format-3.6 \
     ninja-build \
-    wget \
     git \
+    wget \
     python3 \ 
     python3-pip \
+    openjdk-8-jdk \
+    autoconf \
+    automake \
+    cmake \
     && pip3 install conan \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN cd /usr/local/src \ 
-    && wget https://cmake.org/files/v3.13/cmake-${CMAKE_VERSION}.tar.gz \
+RUN cd /opt \ 
+    && wget https://cmake.org/files/v3.14/cmake-${CMAKE_VERSION}.tar.gz \
     && tar xvf cmake-${CMAKE_VERSION}.tar.gz \ 
     && cd cmake-${CMAKE_VERSION} \
     && ./bootstrap \
@@ -38,7 +47,7 @@ RUN cd /usr/local/src \
     && rm -rf cmake*
 
 # cppcheck
-RUN cd /usr/local/src \
+RUN cd /opt \
     && wget https://github.com/danmar/cppcheck/archive/1.79.tar.gz \
     && tar xvf 1.79.tar.gz \
     && cd cppcheck-1.79 \
@@ -48,10 +57,19 @@ RUN cd /usr/local/src \
     && make install \
     && cd ../.. && rm -rf cppcheck*
 
-RUN cd /usr/local/src \
-    && wget https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 \
-    && mv gosu-amd64 /usr/local/bin/gosu \
-    && chmod +x /usr/local/bin/gosu
+# RUN cd /opt \
+#     && wget https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 \
+#     && mv gosu-amd64 /usr/local/bin/gosu \
+#     && chmod +x /usr/local/bin/gosu
+
+RUN cd /opt \
+    && wget https://www.apache.org/dist/thrift/0.10.0/thrift-0.10.0.tar.gz \
+    && tar -xvf thrift-0.10.0.tar.gz \
+    && cd thrift-0.10.0 \
+    && ./configure --with-lua=no \
+    && make && make install \
+    && echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/lib/" >> /etc/environment \
+    && cd .. && rm -rf thrift* 
 
 CMD ["/bin/bash"]
 ENTRYPOINT [""]

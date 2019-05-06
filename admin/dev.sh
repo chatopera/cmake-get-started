@@ -12,7 +12,9 @@ baseDir=$(cd `dirname "$0"`;pwd)
 cd $baseDir/..
 set -x
 docker run --rm \
+    -it \
     -v $PWD/admin:/admin \
-    -v $PWD/app:/app \
+    -v $PWD/linux:/app \
+    --name cmake \
     chatopera/cmake:3.13.3 \
-    /admin/linux.all.sh
+    bash
