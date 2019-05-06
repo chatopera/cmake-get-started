@@ -11,6 +11,7 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
           org.label-schema.vcs-url="https://github.com/chatopera/cmake-get-started"
 
 RUN apt-get update && apt-get install -y build-essential \
+    tzdata \
     libcurl4-openssl-dev \
     libboost-all-dev \
     libprotobuf-dev \
@@ -29,10 +30,13 @@ RUN apt-get update && apt-get install -y build-essential \
     python3 \ 
     python3-pip \
     openjdk-8-jdk \
+    maven \
     autoconf \
     automake \
     cmake \
     && pip3 install conan \
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -70,6 +74,18 @@ RUN cd /opt \
     && make && make install \
     && echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/lib/" >> /etc/environment \
     && cd .. && rm -rf thrift* 
+
+# Set the locale
+ENV LANG C.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL C.UTF-8
+
+# set ENVs
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV MAVEN_HOME=/usr/share/maven
+ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+
+EXPOSE 9100-9120
 
 CMD ["/bin/bash"]
 ENTRYPOINT [""]
