@@ -84,6 +84,7 @@ ENV LC_ALL C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 
 EXPOSE 9100-9120
 
