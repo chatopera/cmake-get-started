@@ -5,6 +5,10 @@
 
 # constants
 baseDir=$(cd `dirname "$0"`;pwd)
+imagename=chatopera/cmake
+imageversion=3.14.3
+imageid=$imagename:$imageversion
+
 # functions
 
 # main 
@@ -14,7 +18,7 @@ set -x
 docker run --rm \
     -it \
     -v $PWD/admin:/admin \
-    -v $PWD/linux:/app \
+    -v $PWD/app:/app \
     --name cmake \
-    chatopera/cmake:3.13.3 \
+    $imageid \
     bash

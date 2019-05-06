@@ -1,4 +1,4 @@
-[![Docker Layers](https://images.microbadger.com/badges/image/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own image badge on microbadger.com") [![Docker Version](https://images.microbadger.com/badges/version/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own version badge on microbadger.com") [![Docker Pulls](https://img.shields.io/docker/pulls/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Stars](https://img.shields.io/docker/stars/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Commit](https://images.microbadger.com/badges/commit/chatopera/cmake:3.13.3.svg)](https://microbadger.com/images/chatopera/cmake:3.13.3 "Get your own commit badge on microbadger.com")
+[![Docker Layers](https://images.microbadger.com/badges/image/chatopera/cmake:3.14.3.svg)](https://microbadger.com/images/chatopera/cmake:3.14.3 "Get your own image badge on microbadger.com") [![Docker Version](https://images.microbadger.com/badges/version/chatopera/cmake:3.14.3.svg)](https://microbadger.com/images/chatopera/cmake:3.14.3 "Get your own version badge on microbadger.com") [![Docker Pulls](https://img.shields.io/docker/pulls/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Stars](https://img.shields.io/docker/stars/chatopera/cmake.svg)](https://hub.docker.com/r/chatopera/cmake/) [![Docker Commit](https://images.microbadger.com/badges/commit/chatopera/cmake:3.14.3.svg)](https://microbadger.com/images/chatopera/cmake:3.14.3 "Get your own commit badge on microbadger.com")
 
 # cmake-get-started
 
@@ -50,6 +50,34 @@
 
 ```
 ./admin/all.sh
+```
+
+## GUI
+
+使用 CMake 安装包安装，可以在系统程序中启动 CMake 的图形用户界面，同时，使用图形用户界面，也可以安装命令行。
+
+在命令行中启动图形用户界面：
+
+```
+cmake-gui
+```
+
+使用图形用户界面配置一个已经存在的项目：
+
+```
+cd cmake-get-started/app/t2
+./run.sh
+cmake-gui -S `pwd` -B `pwd`/build-Debug
+```
+
+<img src="https://user-images.githubusercontent.com/3538629/57209276-841d3000-700a-11e9-908b-a21d0e79eaa3.png" width="500px" />
+
+## 使用 Docker 容器
+
+在 [chatopera/cmake](https://cloud.docker.com/u/chatopera/repository/docker/chatopera/cmake)(Ubuntu:16.04) 容器中测试 CMake 构建，已经安装 C++等开发环境。
+
+```
+./admin/dev.sh
 ```
 
 ## 鸣谢
