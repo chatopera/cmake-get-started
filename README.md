@@ -80,6 +80,12 @@ cmake-gui -S `pwd` -B `pwd`/build-Debug
 ./admin/dev.sh
 ```
 
+## 实战进阶
+
+使用 C++/CMake 项目脚手架，加快项目开发速度。
+
+- [cpp-kick-starter](https://github.com/chatopera/cpp-kick-starter)
+
 ## 鸣谢
 
 本示例程序是基于[CMake Practice](http://file.ncnynl.com/ros/CMake%20Practice.pdf)的内容完成的。
