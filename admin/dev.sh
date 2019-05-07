@@ -16,9 +16,10 @@ imageid=$imagename:$imageversion
 cd $baseDir/..
 set -x
 docker run --rm \
-    -it \
+    -d \
     -v $PWD/admin:/admin \
     -v $PWD/app:/app \
     --name cmake \
     $imageid \
-    bash
+    tail -f /dev/null
+docker exec -it cmake bash

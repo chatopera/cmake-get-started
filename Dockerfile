@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y build-essential \
     maven \
     autoconf \
     automake \
-    cmake \
+    ack-grep \
     && pip3 install conan \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
@@ -86,7 +86,13 @@ ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 
-EXPOSE 9100-9120
+# config
+COPY ./docs/_gitconfig /root/.gitconfig
+
+RUN mkdir /workspace
+WORKDIR /workspace
+
+EXPOSE 9870-9880
 
 CMD ["/bin/bash"]
 ENTRYPOINT [""]
