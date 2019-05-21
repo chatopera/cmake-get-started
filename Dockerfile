@@ -1,14 +1,17 @@
 # Container for building and testing cmake-get-started with CMake
 # original Dockerfile borrow from https://github.com/ttroy50/cmake-examples
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER Hai Liang Wang <hain@chatopera.com>
 
+ARG DEBIAN_FRONTEND=noninteractive
 ARG CMAKE_VERSION
 
 ARG VCS_REF
 
 LABEL org.label-schema.vcs-ref=$VCS_REF \
           org.label-schema.vcs-url="https://github.com/chatopera/cmake-get-started"
+
+#COPY $PWD/assets/aliyun.sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y build-essential \
     tzdata \
@@ -22,12 +25,12 @@ RUN apt-get update && apt-get install -y build-essential \
     bison \
     pkg-config \
     protobuf-compiler \
-    clang-3.6 \
-    clang-format-3.6 \
+    clang \
+    clang-format \
     ninja-build \
     git \
     wget \
-    python3 \ 
+    python3 \
     python3-pip \
     openjdk-8-jdk \
     maven \
@@ -36,7 +39,7 @@ RUN apt-get update && apt-get install -y build-essential \
     ack-grep \
     && pip3 install conan \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime \
-    && dpkg-reconfigure -f noninteractive tzdata \
+    && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure --frontend noninteractive tzdata \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -66,14 +69,14 @@ RUN cd /opt \
 #     && mv gosu-amd64 /usr/local/bin/gosu \
 #     && chmod +x /usr/local/bin/gosu
 
-RUN cd /opt \
-    && wget https://www.apache.org/dist/thrift/0.10.0/thrift-0.10.0.tar.gz \
-    && tar -xvf thrift-0.10.0.tar.gz \
-    && cd thrift-0.10.0 \
-    && ./configure --with-lua=no \
-    && make && make install \
-    && echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/lib/" >> /etc/environment \
-    && cd .. && rm -rf thrift* 
+#RUN cd /opt \
+#    && wget https://www.apache.org/dist/thrift/0.12.0/thrift-0.12.0.tar.gz \
+#    && tar -xvf thrift-0.12.0.tar.gz \
+#    && cd thrift-0.12.0 \
+#    && ./configure --with-lua=no \
+#    && make && make install \
+#    && echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/lib/" >> /etc/environment \
+#    && cd .. && rm -rf thrift* 
 
 # Set the locale
 ENV LANG C.UTF-8
@@ -87,7 +90,7 @@ ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 
 # config
-COPY ./docs/_gitconfig /root/.gitconfig
+COPY $PWD/assets/_gitconfig /root/.gitconfig
 
 RUN mkdir /workspace
 WORKDIR /workspace
