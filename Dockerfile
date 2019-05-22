@@ -62,7 +62,7 @@ RUN cd /opt \
     && cd build \
     && cmake .. \
     && make install \
-    && cd ../.. && rm -rf cppcheck*
+    && cd ../.. && rm -rf cppcheck* 1.79.tar.gz
 
 # RUN cd /opt \
 #     && wget https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 \
@@ -86,8 +86,8 @@ ENV LC_ALL C.UTF-8
 # set ENVs
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV MAVEN_HOME=/usr/share/maven
-ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+ENV PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:/workspace/bin
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/workspace/lib
 
 # config
 COPY $PWD/assets/_gitconfig /root/.gitconfig
